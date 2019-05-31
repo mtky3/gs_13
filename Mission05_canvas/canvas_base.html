@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>canvas_base.html</title>
+    <link rel="stylesheet" href="css/main.css" type="text/css" media="all">
+</head>
+
+<body>
+    <section>
+        <h1>点つなぎ</h1>
+        <nav>
+            <!-- 線の色を変更するHTML要素 -->
+            <input type="color" id="color">
+            <input type="eraser" id="eraser">
+            <!-- 線の太さを変更するHTML要素 -->
+            <input type="range" id="range">
+            <button id="clear_btn">クリアー</button>
+        </nav>
+        <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                    もんだい
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li role="presentation"><a href="dot_to_dot2_300x170.gif">０１</a></li>
+                    <li role="presentation"><a href="dot_to_dot4_510x270.gif">０２</a></li>
+                    <li role="presentation"><a href="dot_to_dot5_510x270.gif">０３</a></li>
+                </ul>
+        </div>
+        <form>
+            もんだい：<select id="mondai">
+                <option value="1"><a href="dot_to_dot2_300x170.gif"></a>０１</option>
+                <option value="2">０２</option>
+                <option value="3">０３</option>
+            </select>
+        </form>
+                
+        <div>
+            <input type="button" id="undo" value="取り消し">
+            <input type="button" id="save" value="保存">
+            <input type="button" id="load" value="保存したデータを読み込み">
+        </div>
+        <canvas id="drowarea" width="500" height="500" style="border:1px solid blue;"></canvas>
+    </section>
+
+
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <!-- <script src="js/canvas.js"></script> -->
+    <script>
+        //初期化(変数letで宣言)
+        let canvas_mouse_event = false; //スイッチ [ true=線を引く, false=線は引かない ]  ＊＊＊
+        let oldX = 0; //１つ前の座標を代入するための変数
+        let oldY = 0; //１つ前の座標を代入するための変数
+        let bold_line = 3; //ラインの太さをここで指定
+        let color = "#ccc"; //ラインの色をここで指定
+
+        //------------------------------------------------
+        //const can = $("#drowarea")[0]; //CanvasElement
+        //const ctx = can.getContext("2d"); //描画するための準備！
+        //------------------------------------------------
+        //上2つのスクリプトを記述します。
+        const can = $("#drowarea")[0];
+        const ctx = can.getContext("2d");
+
+        //mousedown：フラグをTrue
+        //-----------------------------------------------
+        //oldX = e.offsetX;       //MOUSEDOWNしたX横座標取得
+        //oldY = e.offsetY; //MOUSEDOWN Y高さ座標取得
+        //canvas_mouse_event=true;
+        //-----------------------------------------------
+        //上5つのスクリプトを記述します。
+        $(can).on("mousedown",function (e){
+            oldX = e.offsetX;
+            oldY = e.offsetY;
+            canvas_mouse_event = true;
+        });
+
+        //mousemove：フラグがTrueだったら描く ※e：イベント引数取得
+        //----------------------------------------------
+        $(can).on("mousemove",function(e){
+         if(canvas_mouse_event==true){
+             px = e.offsetX;
+             py = e.offsetY;
+             ctx.strokeStyle = color;
+             ctx.lineWidth = bold_line;
+             ctx.beginPath();
+             ctx.lineJoin= "round";
+             ctx.lineCap = "round";
+             ctx.moveTo(oldX, oldY);
+             ctx.lineTo(px, py);
+             ctx.stroke();
+             oldX = px;
+             oldY = py;
+         }
+        });
+
+
+        //mouseup：フラグをfalse
+        //------------------------------------------------
+        //    canvas_mouse_event=false;
+        //------------------------------------------------
+        $(can).on("mouseup",function(){
+            canvas_mouse_event = false;
+        });
+
+        $(can).on("mouseout",function(){
+            canvas_mouse_event = false;
+        });
+
+        //#clear_btn：クリアーボタンAction
+        //-----------------------------------------------------------------
+        //    ctx.beginPath();
+        //    ctx.clearRect(0, 0, can.width, can.height);
+        //-----------------------------------------------------------------
+        $("#clear_btn").on("click",function(){
+            ctx.beginPath();
+            ctx.clearRect(0,0,can.width,can.hight);
+        });
+
+        // 太さを変える
+        $("#range").on("change",function(){
+            bold_line = $("#range").val();
+        });
+
+        // 色を変える
+        $("#color").on("change",function(){
+            color = $("#color").val();
+        });
+
+
+            // 取り消し（アンドゥ）
+    document.getElementById("undo").addEventListener("click", function(){
+        var currentPixel = context.getImageData(0,0, canvasObj.width, canvasObj.height);
+        if (oldPixel){
+            context.putImageData(oldPixel, 0, 0);
+            oldPixel = currentPixel;
+        }
+    }, true);
+    // ローカルストレージに保存
+    document.getElementById("save").addEventListener("click", function(){
+        var imageData = canvasObj.toDataURL("image/png");
+        window.localStorage.setItem("kanji", imageData);
+    }, true);
+    // ローカルストレージから読み出し
+document.getElementById("load").addEventListener("click", function(){
+        var imageObj = new Image();
+        imageObj.src = window.localStorage.getItem("kanji");
+        imageObj.onload = function(){
+            context.drawImage(this, 0, 0);
+        }
+    }, true);
+
+    // 選択した画像ファイルの表示
+    $('#drowarea').on('change', function (e) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            $("#mondai").attr('src', e.target.result);
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    });
+
+    // $ ( function() {
+    //     $ ( 'mondai' ).click( function() {
+    //         $ ( 'drowarea' ).show();
+    //     } ) ;
+    // } ) ;
+    
+    // window.addEventListener("loadpic", function(){
+    //     let ele = document.getElementById("drowarea");
+    //     let prog = document.getElementById("loadstatus");
+    //     let reader;
+    // });
+    // document.getElementById("mondai").addEventListener("click", function(){
+    //     reader = new FileReader();
+    //     reader.onload = function(evt){
+    //         let totalData = evt.total;
+    //         prog.innerHTML = "100% ("+totalData+"/"+totalData+" バイト)";
+    //         prog.value = 100;
+    //     }
+
+    // });
+
+
+
+
+
+
+
+
+
+        
+    </script>
+</body>
+
+</html>
