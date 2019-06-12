@@ -60,17 +60,12 @@ if($status==false) {
 <body id="main">
 <!-- Head[Start] -->
 <header>
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-      <a class="navbar-brand" href="index2.php">データ一覧</a>
-      </div>
-    </div>
-  </nav>
+<?php include("menu.php"); ?>
 </header>
 <!-- Head[End] -->
 
 <!-- Main[Start] -->
+<a href="select.php">[戻る]</a>
 <div>
     <div class="container jumbotron"><?=$view?></div>
 </div>

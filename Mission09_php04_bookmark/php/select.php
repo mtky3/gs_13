@@ -19,18 +19,11 @@ if ($status == false) {
     //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $view .= '<p>';
-
-        if($_SESSION["kanri_flg"]=="1"){
-        $view .= '<a href="delete.php?id=' . $result["id"] . '">';
-        $view .= "[☓]";
-        $view .= '</a>';
-        }
-
         $view .= '<a href="select2.php?id='.$result["lid"].'">';
         $view .= '[一覧]';
         $view .= '</a>';
         $view .= '　';
-        $view .= '<a href="detail.php?id=' . $result["id"] . '">';
+        $view .= '<a href="user_detail.php?id=' . $result["id"] . '">';
         $view .= $result["name"];
         $view .= '</a>'.'<br>';
         $view .= '<br>';

@@ -37,7 +37,7 @@ $pdo = db_con();
      <label><textArea name="bookcomment" rows="4" cols="40"></textArea></label><br>
      <input type="submit" value="登録">
     </fieldset>
-     <a href="select.php">[マイページへ]</a>
+    <a href="select.php">[マイページへ]</a>
   </div>
 </form>
 <!-- Main[End] -->

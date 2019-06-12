@@ -22,7 +22,7 @@ if ($status == false) {
 
         if($_SESSION["kanri_flg"]=="1"){
         $view .= '<a href="delete.php?id=' . $result["id"] . '">';
-        $view .= "[☓]";
+        $view .= "[削除]";
         $view .= '</a>';
         }
 
@@ -60,6 +60,7 @@ if ($status == false) {
 <!-- Head[End] -->
 
 <!-- Main[Start] -->
+<h4>ユーザー一覧</h4>
 <div>
     <div class="container jumbotron"><?=$view?></div>
 </div>
