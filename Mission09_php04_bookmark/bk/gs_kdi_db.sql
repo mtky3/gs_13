@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 2019 年 6 月 11 日 23:44
+-- Generation Time: 2019 年 6 月 13 日 01:31
 -- サーバのバージョン： 10.1.40-MariaDB
 -- PHP Version: 7.3.5
 
@@ -46,7 +46,8 @@ INSERT INTO `gs_user_table` (`id`, `name`, `lid`, `lpw`, `indate`, `kanri_flg`, 
 (1, 'ラララ管理者', 'lalala', 'lalala', '0000-00-00 00:00:00', 1, 0),
 (2, 'マツシタ', 'matsu', 'matsu', '0000-00-00 00:00:00', 0, 0),
 (3, 'キヨシ', 'kiyo', 'kiyo', '0000-00-00 00:00:00', 0, 0),
-(4, 'マツキヨ', 'mtky', 'mtky', '2019-06-12 06:25:11', 0, 0);
+(4, 'マツキヨ', 'mtky', 'mtky', '2019-06-12 06:25:11', 0, 0),
+(5, 'ドラえもん', 'dora', 'dora', '2019-06-13 08:18:47', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -100,7 +101,7 @@ ALTER TABLE `Mission08_bookmark_table`
 -- AUTO_INCREMENT for table `gs_user_table`
 --
 ALTER TABLE `gs_user_table`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `Mission08_bookmark_table`
