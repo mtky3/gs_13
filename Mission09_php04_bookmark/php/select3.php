@@ -1,4 +1,8 @@
 <?php
+
+include "funcs.php";
+$pdo = db_con();
+
 //1.  DB接続します
 try {
 $pdo = new PDO('mysql:dbname=gs_kdi_db;charset=utf8;host=localhost','root','');
@@ -22,58 +26,39 @@ if($status==false) {
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){ 
     //$resultにデータが入ってくるのでそれを活用して[html]に表示させる為の変数を作成して代入する
     $view .= "<p>";
-    $view .= '<a href="detail2.php?id='.$result["id"].'">';
-    $view .= '[編集]';
-    $view .= '</a>';
+    $view .= "■".$result["bookname"];
     $view .= '　';
-    $view .= '<a href="detail2.php?id='.$result["id"].'">';
-    $view .= $result["bookname"].":".$result["bookurl"].":".$result["bookcomment"];
-    $view .= '</a>';
-    $view .= '　';
-    $view .= '<a href="delete2.php?id='.$result["id"].'">';
-    $view .= '[削除]';
-    $view .= '</a>';
+    $view .= '<br>';
+    $view .= $result["bookurl"]."<br>".$result["bookcomment"];
     $view .= "</p>";
   }
 }
 ?>
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>データ一覧</title>
+<link rel="stylesheet" href="css/range.css">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<style>div{padding: 10px;font-size:16px;}</style>
+</head>
+<body id="main">
+<!-- Head[Start] -->
+<header>
+<p>ゲスト</p>
+<?php include("menu2.php"); ?>
+</header>
+<!-- Head[End] -->
+<a href="main.php">[メインへ]</a>
+<!-- Main[Start] -->
+<div>
+    <div class="container jumbotron"><?=$view?></div>
+</div>
+<!-- Main[End] -->
 
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
- 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
- 
-    <title>データ一覧</title>
-  </head>
-  <body>
-    <h3>データ一覧</h3>
-    <table border="1">
-    <tr>
-      <th>編集</th><th>書籍名</th><th>URL</th><th>コメント</th><th>削除</th>
-    </tr>
-    <?php while ( $result = $stmt->fetch(PDO::FETCH_ASSOC)){?>
-      <tr>
-        <td><a href="detail2.php">[編集]</a></td>
-        <td><?php echo($result['bookname']); ?></td>
-        <td><?php print($result['bookurl']); ?></td>
-        <td><?php write($result['bookcomment']); ?></td>
-        <td><a href="delete2.php">[削除]</a></td>
-      </tr>
-    <?php } ?>
-      </table>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
+</body>
 </html>
-

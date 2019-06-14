@@ -26,6 +26,12 @@ PW:<input type="password" name="lpw" />
 <br>
   <a href="user.php">[新規ユーザー登録]</a>
 
+<br>
+  <a href="select3.php">[ログインせずに閲覧]</a>
+
+<br>
+<br>
+  <a href="main.php">[メインへ]</a>
 
 </body>
 </html>
