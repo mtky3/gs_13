@@ -29,7 +29,7 @@ if($status==false) {
     $view .= "■".$result["bookname"];
     $view .= '　';
     $view .= '<br>';
-    $view .= $result["bookurl"]."<br>".$result["bookcomment"];
+    $view .= $result["bookcomment"];
     $view .= "</p>";
   }
 }

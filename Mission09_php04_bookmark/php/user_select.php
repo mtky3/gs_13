@@ -30,7 +30,7 @@ if ($status == false) {
         $view .= '[ブックマーク一覧]';
         $view .= '</a>';
         $view .= '　';
-        $view .= '<a href="detail.php?id=' . $result["id"] . '">';
+        $view .= '<a href="user_detail.php?id=' . $result["id"] . '">';
         $view .= $result["name"];
         $view .= '</a>'.'<br>';
         $view .= '</p>';
@@ -64,6 +64,7 @@ if ($status == false) {
 <div>
     <div class="container jumbotron"><?=$view?></div>
 </div>
+<a href="select.php">[戻る]</a>
 <!-- Main[End] -->
 
 </body>
