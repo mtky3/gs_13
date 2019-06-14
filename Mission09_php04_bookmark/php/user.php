@@ -31,7 +31,8 @@
   </div>
 </form>
 <!-- Main[End] -->
-
+<br>
+<a href="main.php">[メインへ]</a>
 
 </body>
 </html>

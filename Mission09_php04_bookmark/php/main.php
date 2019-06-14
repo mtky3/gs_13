@@ -34,7 +34,7 @@ $status = $stmt->execute();
 
 <!-- Main[Start] -->
 <div>
-    <div class="container jumbotron"></div>
+    <div class="jumbotron"><h3>みんなのオススメ本</h3></div>
 </div>
 <!-- Main[End] -->
 

@@ -18,17 +18,20 @@
 <br>
 <br>
 <!-- lLOGINogin_act.php は認証処理用のPHPです。 -->
-<form name="form1" action="login_act.php" method="post">
-ID:<input type="text" name="lid" />
-PW:<input type="password" name="lpw" />
-<input type="submit" value="LOGIN" />
-</form>
-<br>
-  <a href="user.php">[新規ユーザー登録]</a>
 
-<br>
-  <a href="select3.php">[ログインせずに閲覧]</a>
+<div class="jumbotron">
+  <form name="form1" action="login_act.php" method="post">
+  ID:<input type="text" name="lid" /><br>
+  PW:<input type="password" name="lpw" />
+  <input type="submit" value="LOGIN" />
+  </form>
+  <br>
+    <a href="user.php">[新規ユーザー登録]</a>
 
+  <br>
+  <br>
+    <a href="select3.php">[ログインせずに閲覧]</a>
+</div>
 <br>
 <br>
   <a href="main.php">[メインへ]</a>

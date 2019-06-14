@@ -7,7 +7,7 @@
             <a class="navbar-brand" href="user.php">ユーザー登録</a>　
             <a class="navbar-brand" href="user_select.php">ユーザー一覧</a>　
             <?php }?>
-            <a class="navbar-brand" href="logout.php">ログアウト</a>
+            <a class="navbar-brand" href="main.php">ログアウト</a>
         </div>
     </div>
 </nav>

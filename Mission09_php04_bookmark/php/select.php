@@ -27,9 +27,6 @@ if ($status == false) {
         $view .= $result["name"];
         $view .= '</a>'.'<br>';
         $view .= '<br>';
-        $view .= '<a href="index2.php?id=' . $result["lid"] . '">';
-        $view .= '<input type="submit" value="新しく書籍を登録する">';
-        $view .= '</a>'.'<br>';
         $view .= '</p>';
 
     }
@@ -58,6 +55,7 @@ if ($status == false) {
 
 <!-- Main[Start] -->
 <div>
+    <a href="index2.php?id=' . $result["lid"] . '"><input type="submit" value="新しく書籍を登録する"></a><br>
     <div class="container jumbotron"><?=$view?></div>
 </div>
 <!-- Main[End] -->
